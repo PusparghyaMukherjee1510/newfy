@@ -1,0 +1,98 @@
+<input type="range" name="range" id="progressbar" min="0" value="0" max="100">
+#progressbar{
+    width: 70vw;
+    cursor: pointer;
+}
+<div class="progressbar">
+    <div class="progressed" id="ahead">
+
+    </div>
+</div>
+.progressbar {
+    height: 10px;
+    width: 500px;
+    background-color: #aaa;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.progressed{
+    height: 10px;
+    width: 0%;
+    background-color: red;
+}
+#ahead{
+    width: 0%;
+    cursor: pointer;
+}
+audioElement.ontimeupdate=function(e){
+  progress=parseInt((audioElement.currentTime/audioElement.duration)*100) +"%";
+  myProgressbar.style.width=progress ;
+  console.log('playing', progress);
+}
+myProgressbar.onchange=function(e){
+     audioElement.currentTime=(myProgressbar.value * audioElement.duration)/100;
+
+};
+
+<div class="progressbar">
+    <input class="progressed" id="ahead" type="range" min="0" max="100" value="0">
+      
+    </div>
+    
+    element.getElementsByTagName('img')[0].src=songs[i].filePath;
+element.getElementsByClassName('span')[0].innerText=songs[i].filePath;
+
+ var sounds = new Array(new Audio("https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3"),
+        new Audio("http://www.music.helsinki.fi/tmt/opetus/uusmedia/esim/a2002011001-e02-128k.mp3"),
+        new Audio("http://techslides.com/demos/samples/sample.mp3"),
+        new Audio("https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3"),
+        new Audio("http://www.music.helsinki.fi/tmt/opetus/uusmedia/esim/a2002011001-e02-128k.mp3"),
+        new Audio("http://techslides.com/demos/samples/sample.mp3"),
+        new Audio("https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3"),
+        new Audio("http://www.music.helsinki.fi/tmt/opetus/uusmedia/esim/a2002011001-e02-128k.mp3"),
+        new Audio("http://techslides.com/demos/samples/sample.mp3")
+    );
+    var i = -1;
+    playSnd();
+
+    function playSnd() {
+        i++;
+        if (i == sounds.length) return;
+        sounds[i].addEventListener('ended', playSnd);
+        sounds[i].play();
+    };
+
+    const playAll=()=>{
+  Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+    element.classList.add('fa-play-circle');
+    element.classList.remove('fa-pause-circle');
+  })
+}
+
+    Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+  element.addEventListener('click', (e)=>{
+            playAll();
+            songIndex = parseInt(e.target.id);
+             e.target.classList.remove('fa-play-circle');
+             e.target.classList.add('fa-pause-circle');
+            audioElement.src='newsongs/${songIndex+1}.mp3';
+             audioElement.currentTime=0;
+             audioElement.play();
+             masterPlay.classList.add('fa-pause-circle');
+             masterPlay.classList.remove('fa-play-circle');
+  })
+})
+
+const playAll=()=>{
+  Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+    if(audioElement.play || audioElement.currentTime<=0){
+    element.classList.add('fa-play-circle');
+    element.classList.remove('fa-pause-circle');
+    audioElement.play();
+  }else{
+    element.classList.remove('fa-play-circle');
+    element.classList.add('fa-pause-circle');
+    audioElement.paused();
+  }
+  })
+}
